@@ -7,15 +7,16 @@ require('dotenv').config({
   path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
 });
 
-const LogClients = db.define('LogClients', {
-  prohibited: DataTypes.STRING,
-  exit: DataTypes.FLOAT,
+const LogsClients = db.define('LogsClients', {
+  prohibitedHours: DataTypes.STRING,
+  exitHours: DataTypes.FLOAT,
   idUser: DataTypes.INTEGER,
   price: DataTypes.FLOAT,
   paidOut: DataTypes.BOOLEAN,
+  paidOutPrice: DataTypes.STRING,
   changeValue: DataTypes.FLOAT
 });
 
-LogClients.belongsTo(User);
+LogsClients.belongsTo(User);
 
-export default LogClients;
+export default LogsClients;
