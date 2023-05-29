@@ -1,4 +1,4 @@
-const db = require('../config/database.cjs');
+import db from '../config/database';
 
 export async function connectionDB() {
   try {
