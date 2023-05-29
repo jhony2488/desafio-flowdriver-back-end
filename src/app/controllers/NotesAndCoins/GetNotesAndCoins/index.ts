@@ -13,9 +13,9 @@ async function GetNotesAndCoins(req: Request, res: Response) {
       } */
 
   try {
-    const result = await id ? NotesAndCoins.findOne({
+    const result = id ? await NotesAndCoins.findOne({
       where: { id }
-    }) : NotesAndCoins.findAll();
+    }) : await NotesAndCoins.findAll();
     /* #swagger.responses[200] = {
              schema: { $ref: "#/definitions/SendMailResponse" },
              description: 'Obtido as tasks'

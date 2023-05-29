@@ -33,7 +33,7 @@ async function UpdateNotesAndCoinsWithWithdrawalOrPlacement(req: Request, res: R
       if(getItem.value){
         await NotesAndCoins.update(
           {
-            amount: item.amount + getItem.value,
+            amount: item.amount + getItem.amount,
             value: item.value,
           },
           {

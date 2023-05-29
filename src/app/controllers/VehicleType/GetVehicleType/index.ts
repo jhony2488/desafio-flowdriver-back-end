@@ -12,21 +12,23 @@ async function GetVehicleType(req: Request, res: Response) {
       } */
 
   try {
-    const result = await id? VehicleType.findOne({
+    const result = id ? await VehicleType.findOne({
           where: { id },
           include: clients
             ? [
                 {
                   model: Clients,
+                  as:"clients"
                 },
               ]
             : undefined,
         })
-      : VehicleType.findAll({
+      : await VehicleType.findAll({
           include: clients
             ? [
                 {
                   model: Clients, // Modelo da primeira associação
+                  as:"clients"
                 },
               ]
             : undefined,
