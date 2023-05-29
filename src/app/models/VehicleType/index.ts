@@ -1,17 +1,21 @@
-import { DataTypes } from 'sequelize';
-import db from '../../../config/database.cjs';
-import UserClient from '../Clients';
-import UserVehicleType from '../UserVehicleType';
+import { DataTypes,Model } from 'sequelize';
+import db from '../../../config/database';
 
 require('dotenv').config({
   path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
 });
 
-const VehicleType = db.define('VehicleType', {
-  name: DataTypes.STRING,
-  value: DataTypes.FLOAT,
-});
+class VehicleType extends Model {};
 
-VehicleType.belongsToMany(UserClient, { through: UserVehicleType });
+VehicleType.init(
+  {
+    name: DataTypes.STRING,
+    value: DataTypes.FLOAT,
+  },
+  {
+    sequelize: db,
+    modelName: 'VehicleType',
+  },
+);
 
 export default VehicleType;

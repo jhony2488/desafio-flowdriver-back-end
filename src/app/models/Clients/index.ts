@@ -1,19 +1,23 @@
-import { DataTypes } from 'sequelize';
-import db from '../../../config/database.cjs';
-import LogClients from '../LogClients';
-import VehicleType from '../VehicleType';
-import UserVehicleType from '../UserVehicleType'
+import { DataTypes, Model } from 'sequelize';
+import db from '../../../config/database';
 
-require('dotenv').config({
-  path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
-});
+class Clients extends Model {};
 
-const Clients = db.define('Clients', {
-  plate: DataTypes.STRING,
-  VehicleTypeId: DataTypes.INTEGER
-});
-
-Clients.hasMany(LogClients);
-Clients.belongsToMany(VehicleType, { through: UserVehicleType });
+Clients.init(
+  {
+    plate: {
+      type: DataTypes.STRING,
+      allowNull: false,
+    },
+    VehicleTypeId: {
+      type: DataTypes.INTEGER,
+      allowNull: false,
+    },
+  },
+  {
+    sequelize: db,
+    modelName: 'Clients',
+  },
+);
 
 export default Clients;

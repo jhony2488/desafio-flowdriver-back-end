@@ -1,5 +1,5 @@
 import { DataTypes } from 'sequelize';
-import db from '../../../config/database.cjs';
+import db from '../../../config/database';
 
 require('dotenv').config({
   path: process.env.NODE_ENV === 'test' ? '.env.test' : '.env',
@@ -7,7 +7,7 @@ require('dotenv').config({
 
 const NotesAndCoins = db.define('NotesAndCoins', {
   value: DataTypes.STRING,
-  amount: DataTypes.FLOAT,
+  amount: DataTypes.INTEGER,
 });
 
 export default NotesAndCoins;

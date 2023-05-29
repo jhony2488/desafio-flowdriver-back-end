@@ -1,9 +1,9 @@
-import db from '../../../config/database.cjs';
+import db from '../../../config/database';
 import { DataTypes } from 'sequelize';
 
 const UserVehicleType = db.define('UserVehicleType', {
   userId: DataTypes.INTEGER,
-  vehicleType: DataTypes.INTEGER,
+  vehicleTypeId: DataTypes.INTEGER,
 });
 
 export default UserVehicleType;
