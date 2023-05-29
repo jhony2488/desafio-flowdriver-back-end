@@ -2,7 +2,7 @@ import express from 'express';
 
 import authentication from './app/middlewares/auth';
 
-import DefaultControllersUsers from './app/controllers/DefaultControllers';
+import DefaultControllers from './app/controllers/DefaultControllers';
 import { GetClients, SetClients, UpdateClients, DeleteClients } from './app/controllers/Clients';
 
 import { GetLogsClients, SetLogsClients, UpdateLogsClients, DeleteLogsClients } from './app/controllers/LogsClients';
@@ -21,7 +21,7 @@ import { GetVehicleType, SetVehicleType, UpdateVehicleType, DeleteVehicleType } 
 const router = express.Router();
 
 //default
-router.get('/', authentication, DefaultControllersUsers);
+router.get('/', authentication, DefaultControllers);
 
 //clients
 router.get('/clients', authentication, GetClients);
@@ -38,10 +38,10 @@ router.patch('/notesAndCoins/:id', authentication,UpdateAmountCoins);
 router.delete('/notesAndCoins/:id', authentication, DeleteNotesAndCoins);
 
 //LogsClients
-router.get('/notesAndCoins', authentication, GetLogsClients);
-router.post('/notesAndCoins', authentication, SetLogsClients);
-router.put('/notesAndCoins', authentication, UpdateLogsClients);
-router.delete('/notesAndCoins/:id', authentication, DeleteLogsClients);
+router.get('/logsClients', authentication, GetLogsClients);
+router.post('/logsClients', authentication, SetLogsClients);
+router.put('/logsClients/:id', authentication, UpdateLogsClients);
+router.delete('/logsClients/:id', authentication, DeleteLogsClients);
 
 //VehicleType
 router.get('/vehicleType', authentication, GetVehicleType);
