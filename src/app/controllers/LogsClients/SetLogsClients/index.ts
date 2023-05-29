@@ -1,22 +1,21 @@
 import { Request, Response } from 'express';
-import UserClients from '../../../models/Clients';
-import LogsClients from '../../../models/LogClients';
+import { Clients,LogsClients } from '../../../models';
 import { calculateChangeMoney } from '../../../utils/calculateChangeMoney';
 
 async function SetClient(req: Request, res: Response) {
   const {
-    prohibitedHours,
-    exitHours,
+    prohibited,
+    exit,
     price,
     paidOut,
     changeValue,
     paidOutPrice,
     idUser,
   }: {
-    prohibitedHours: string;
-    exitHours: string | null;
+    prohibited: string;
+    exit: string | null;
     idUser: number;
-    price: number;
+    price: number | null;
     paidOut: boolean;
     changeValue: number | null;
     paidOutPrice: number | null;
@@ -46,8 +45,8 @@ async function SetClient(req: Request, res: Response) {
 
     await LogsClients.create(
       {
-        prohibitedHours,
-        exitHours,
+        prohibited,
+        exit,
         price,
         paidOut,
         changeValue,
@@ -57,18 +56,18 @@ async function SetClient(req: Request, res: Response) {
       {
         include: [
           {
-            model: UserClients, // Modelo da primeira associação
+            model: Clients, // Modelo da primeira associação
             as: 'userClients', // Alias da primeira associação definido no modelo User
           },
         ],
       },
     );
 
-    const user:any = await UserClients.findByPk(idUser);
+    const user:any = await Clients.findByPk(idUser);
 
     user.addLogsClients(      {
-      prohibitedHours,
-      exitHours,
+      prohibited,
+      exit,
       price,
       paidOut,
       changeValue,
@@ -82,8 +81,8 @@ async function SetClient(req: Request, res: Response) {
         } */
     return res.json({
       message: 'Log de Cliente criado com sucesso',
-      prohibitedHours,
-      exitHours,
+      prohibited,
+      exit,
       price,
       paidOut,
       changeValue,

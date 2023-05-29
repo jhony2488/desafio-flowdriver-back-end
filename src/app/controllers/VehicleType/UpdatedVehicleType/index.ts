@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import VehicleType from "../../../models/VehicleType";
+import { VehicleType } from '../../../models';
 
 async function UpdatedVehicleType(req: Request, res: Response) {
   const { id } = req.params;

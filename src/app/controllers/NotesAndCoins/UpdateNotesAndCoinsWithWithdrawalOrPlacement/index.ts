@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import NotesAndCoins from '../../../models/NotesAndCoins';
+import { NotesAndCoins } from '../../../models';
 
 async function UpdateNotesAndCoinsWithWithdrawalOrPlacement(req: Request, res: Response) {
   const {
@@ -30,17 +30,24 @@ async function UpdateNotesAndCoinsWithWithdrawalOrPlacement(req: Request, res: R
           },
         },
       );
-      await NotesAndCoins.update(
-        {
-          amount: item.amount + getItem.value,
-          value: item.value,
-        },
-        {
-          where: {
+      if(getItem.value){
+        await NotesAndCoins.update(
+          {
+            amount: item.amount + getItem.value,
             value: item.value,
           },
-        },
-      );
+          {
+            where: {
+              value: item.value,
+            },
+          },
+        );
+      }
+      else{
+        return res.json({
+          message: 'Nota não existeno estoque de dinheiro',
+        });
+      }
     });
 
     /* #swagger.responses[200] = {

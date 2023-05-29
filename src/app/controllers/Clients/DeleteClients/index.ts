@@ -1,7 +1,6 @@
 
 import { Request, Response } from 'express';
-import UserClient from "../../../models/Clients";
-import LogsClients from "../../../models/LogClients";
+import {Clients,LogsClients} from '../../../models';
 
 async function DeleteClients(req: Request, res: Response) {
   const { id } = req.params;
@@ -20,7 +19,7 @@ async function DeleteClients(req: Request, res: Response) {
         } */
 
   try {
-    await UserClient.destroy({
+    await Clients.destroy({
       where: {
         id
       }

@@ -1,6 +1,5 @@
 import { Request, Response } from 'express';
-import UserClient from '../../../models/Clients';
-import VehicleType from '../../../models/VehicleType';
+import { Clients,VehicleType } from '../../../models';
 
 async function GetVehicleType(req: Request, res: Response) {
   const { id, clients } = req.query;
@@ -18,8 +17,7 @@ async function GetVehicleType(req: Request, res: Response) {
           include: clients
             ? [
                 {
-                  model: VehicleType, // Modelo da primeira associação
-                  as: 'userClients', // Alias da primeira associação definido no modelo User
+                  model: Clients,
                 },
               ]
             : undefined,
@@ -28,8 +26,7 @@ async function GetVehicleType(req: Request, res: Response) {
           include: clients
             ? [
                 {
-                  model: UserClient, // Modelo da primeira associação
-                  as: 'userClients', // Alias da primeira associação definido no modelo User
+                  model: Clients, // Modelo da primeira associação
                 },
               ]
             : undefined,

@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import LogsClients from '../../../models/LogClients';
+import { LogsClients } from '../../../models';
 
 async function SetClient(req: Request, res: Response) {
   const { id } = req.params;

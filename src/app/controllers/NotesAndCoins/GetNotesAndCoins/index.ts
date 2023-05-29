@@ -1,6 +1,6 @@
 
 import { Request, Response } from 'express';
-import NotesAndCoins from "../../../models/NotesAndCoins";
+import { NotesAndCoins } from '../../../models';
 
 async function GetNotesAndCoins(req: Request, res: Response) {
   const { id } = req.query;

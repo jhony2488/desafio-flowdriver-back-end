@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import NotesAndCoins from '../../../models/NotesAndCoins';
+import { NotesAndCoins } from '../../../models';
 
 async function UpdateNotesAndCoins(req: Request, res: Response) {
   const { id } = req.params;

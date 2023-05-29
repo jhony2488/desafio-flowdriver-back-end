@@ -1,7 +1,6 @@
 
 import { Request, Response } from 'express';
-import UserClients from "../../../models/Clients";
-import VehicleType from "../../../models/VehicleType";
+import { Clients,VehicleType } from '../../../models';
 
 async function DeleteVehicleType(req: Request, res: Response) {
   const { id } = req.params;
@@ -26,7 +25,7 @@ async function DeleteVehicleType(req: Request, res: Response) {
       }
     });
 
-    await UserClients.update({
+    await Clients.update({
       VehicleTypeId:null,
     },{
       where: {

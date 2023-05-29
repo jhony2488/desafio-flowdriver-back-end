@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import UserClients from '../../../models/Clients';
+import { VehicleType } from '../../../models';
 
 async function SetVehicleType(req: Request, res: Response) {
   const {
@@ -24,7 +24,7 @@ async function SetVehicleType(req: Request, res: Response) {
         } */
 
   try {
-    await UserClients.create({
+    await VehicleType.create({
       name,
       value,
     });

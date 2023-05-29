@@ -1,8 +1,5 @@
 import { Request, Response } from 'express'
-import UserClients from '../../../models/Clients';
-import LogsClients from '../../../models/LogClients';
-import VehicleType from "../../../models/VehicleType";
-import UserVehicleType from "../../../models/UserVehicleType";
+import {Clients,LogsClients, VehicleType,UserVehicleType} from '../../../models';
 
 
 async function SetClient(req: Request, res: Response) {
@@ -30,7 +27,7 @@ async function SetClient(req: Request, res: Response) {
         } */
 
   try {
-    await UserClients.create({
+    await Clients.create({
       plate,
       VehicleTypeId,
       LogClients,
@@ -48,14 +45,15 @@ async function SetClient(req: Request, res: Response) {
       ]
     });
 
-    const user: any = await UserClients.findOne({
+    const user: any = await Clients.findOne({
       where: { plate },
     });
 
     const userId= user?.id;
-    const vehicleType= VehicleTypeId;
+    const vehicleTypeId= VehicleTypeId;
 
-    await UserVehicleType.create({userId, vehicleType })
+    await UserVehicleType.create({userId, vehicleTypeId });
+
     /* #swagger.responses[200] = {
                schema: { $ref: "#/definitions/SendMailResponse" },
                description: 'Enviar email'

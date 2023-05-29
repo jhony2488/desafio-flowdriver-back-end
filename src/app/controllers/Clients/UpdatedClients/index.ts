@@ -1,5 +1,5 @@
 import { Request, Response } from 'express'
-import UserClients from '../../../models/Clients';
+import {Clients} from '../../../models';
 
 async function UpdateUserClient(req: Request, res: Response) {
   const { id } = req.params;
@@ -25,7 +25,7 @@ async function UpdateUserClient(req: Request, res: Response) {
         } */
 
   try {
-    await UserClients.update({
+    await Clients.update({
       plate,
       VehicleTypeId,
     },{

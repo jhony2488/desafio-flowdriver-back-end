@@ -1,5 +1,5 @@
 import { Request, Response } from 'express';
-import NotesAndCoins from '../../../models/NotesAndCoins';
+import { NotesAndCoins } from '../../../models';
 
 async function SetNotesAndCoins(req: Request, res: Response) {
   const {

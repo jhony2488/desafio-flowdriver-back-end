@@ -1,8 +1,6 @@
 
 import { Request, Response } from 'express';
-import UserClient from "../../../models/Clients";
-import LogsClients from "../../../models/LogClients";
-import VehicleType from "../../../models/VehicleType";
+import { Clients,LogsClients } from '../../../models';
 
 async function getCLients(req: Request, res: Response) {
   const { idUser } = req.query;
@@ -20,7 +18,7 @@ async function getCLients(req: Request, res: Response) {
     }) : LogsClients.findAll({
       include: [
         {
-          model: UserClient, // Modelo da primeira associação
+          model: Clients, // Modelo da primeira associação
           as: 'userClients' // Alias da primeira associação definido no modelo User
         },
       ]

@@ -1,25 +1,27 @@
 import { Request, Response } from 'express';
-import UserClients from '../../../models/Clients';
-import LogsClients from '../../../models/LogClients';
+import { LogsClients } from '../../../models';
 import { calculateChangeMoney } from '../../../utils/calculateChangeMoney';
+import { calculateDifferentHours } from '../../../utils/calculateDifferentHours'
 
 async function SetClient(req: Request, res: Response) {
   const { id } = req.params;
   const {
-    prohibitedHours,
-    exitHours,
+    prohibited,
+    exit,
     price,
     paidOut,
     changeValue,
     paidOutPrice,
+    priceVehicle,
     idUser,
   }: {
-    prohibitedHours: string;
-    exitHours: string | null;
+    prohibited: string;
+    exit: string | null;
     idUser: number;
     price: number;
     paidOut: boolean;
     changeValue: number | null;
+    priceVehicle: number;
     paidOutPrice: number | null;
   } = req.body;
   // #swagger.tags = ['setTasks']
@@ -45,13 +47,17 @@ async function SetClient(req: Request, res: Response) {
     });
    }
 
+  const calChangeValue=paidOutPrice!=null || paidOutPrice ?  calculateChangeMoney(price, paidOutPrice || 0): changeValue;
+  const calPrice= exit!=null && exit? priceVehicle * calculateDifferentHours(prohibited, exit) : price;
+
     await LogsClients.update(
       {
-        prohibitedHours,
-        exitHours,
-        price,
+        prohibited,
+        exit,
+        price: calPrice,
         paidOut,
-        changeValue,
+        priceVehicle,
+        changeValue: calChangeValue,
         paidOutPrice,
         idUser,
       },
@@ -62,29 +68,17 @@ async function SetClient(req: Request, res: Response) {
       },
     );
 
-    const user:any = await UserClients.findByPk(idUser);
-
-    user.addLogsClients(      {
-      prohibitedHours,
-      exitHours,
-      price,
-      paidOut,
-      changeValue,
-      paidOutPrice,
-      idUser,
-    },);
-
     /* #swagger.responses[200] = {
                schema: { $ref: "#/definitions/SendMailResponse" },
                description: 'Enviar email'
         } */
     return res.json({
-      message: 'Cliente atualizado com sucesso',
-      prohibitedHours,
-      exitHours,
-      price,
+      message: 'Log de Cliente atualizado com sucesso',
+      prohibited,
+      exit,
+      price: calPrice,
       paidOut,
-      changeValue,
+      changeValue: calChangeValue,
       paidOutPrice,
       idUser,
     });
