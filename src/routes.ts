@@ -18,6 +18,8 @@ import {
 
 import { GetVehicleType, SetVehicleType, UpdateVehicleType, DeleteVehicleType } from './app/controllers/VehicleType';
 
+import { GetUserVehicleType } from './app/controllers/UserVehicleType';
+
 const router = express.Router();
 
 //default
@@ -48,5 +50,8 @@ router.get('/vehicleType', authentication, GetVehicleType);
 router.post('/vehicleType', authentication, SetVehicleType);
 router.put('/vehicleType/:id', authentication, UpdateVehicleType);
 router.delete('/vehicleType/:id', authentication, DeleteVehicleType);
+
+//UserVehicleType
+router.get('/UservehicleType', authentication, GetUserVehicleType);
 
 export default router;
