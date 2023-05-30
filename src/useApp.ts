@@ -1,8 +1,8 @@
-import express,{} from 'express'
-import swaggerUi from 'swagger-ui-express'
-import routes from './routes'
+import express,{} from 'express';
+import swaggerUi from 'swagger-ui-express';
+import routes from './routes';
 
-const swaggerFile = require('../swagger_output.json')
+const swaggerFile = require('../swagger_output.json');
 
 export function useExpressApp(app){
     app.use(express.urlencoded({ extended: false }));

@@ -1,6 +1,6 @@
 export function calculateChangeMoney(valorCompra:number, valorPago:number) {
-  const changeValue = valorPago - valorCompra;
-  const message = valorPago < valorCompra ? 'Falta dinheiro' : 'Não falta dinheiro';
+  const changeValue:number = valorPago - valorCompra;
+  const message:string = valorPago < valorCompra ? 'Falta dinheiro' : 'Não falta dinheiro';
 
   return {
     changeValue,
