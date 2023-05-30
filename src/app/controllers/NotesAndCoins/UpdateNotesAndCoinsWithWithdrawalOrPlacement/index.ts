@@ -1,11 +1,12 @@
 import { Request, Response } from 'express';
 import { NotesAndCoins } from '../../../models';
+import { PropsCoins } from '../../../interfaces/coins';
 
 async function UpdateNotesAndCoinsWithWithdrawalOrPlacement(req: Request, res: Response) {
   const {
     amountsWithdrawn,
   }: {
-    amountsWithdrawn: [];
+    amountsWithdrawn: PropsCoins[];
   } = req.body;
   // #swagger.tags = ['setTasks']
   // #swagger.description = 'Endpoint para criar uma nova task'
@@ -45,7 +46,8 @@ async function UpdateNotesAndCoinsWithWithdrawalOrPlacement(req: Request, res: R
       }
       else{
         return res.json({
-          message: 'Nota não existeno estoque de dinheiro',
+          message: 'Nota não existem no estoque de dinheiro',
+          nota: item.value
         });
       }
     });

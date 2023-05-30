@@ -1,13 +1,16 @@
 import { Request, Response } from 'express';
 import { NotesAndCoins } from '../../../models';
+import { PropsCoins } from '../../../interfaces/coins';
 
 async function SetNotesAndCoins(req: Request, res: Response) {
   const {
     value,
     amount,
+    amountsWithdrawn,
   }: {
-    value: string;
-    amount: number;
+    value?: string;
+    amount?: number;
+    amountsWithdrawn: PropsCoins[] | null;
   } = req.body;
   // #swagger.tags = ['setTasks']
   // #swagger.description = 'Endpoint para criar uma nova task'
@@ -24,6 +27,18 @@ async function SetNotesAndCoins(req: Request, res: Response) {
         } */
 
   try {
+    if (amountsWithdrawn != null && amountsWithdrawn) {
+      await amountsWithdrawn.map(async (item) => {
+        await NotesAndCoins.create({
+          amount: item.amount,
+          value: item.value,
+        });
+      });
+      return res.json({
+        message: 'Moedas/dinheiro criada com sucesso',
+        amountsWithdrawn,
+      });
+    }
     await NotesAndCoins.create({
       amount,
       value,
