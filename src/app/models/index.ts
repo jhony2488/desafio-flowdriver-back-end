@@ -11,7 +11,7 @@ db.models.Clients.hasMany(db.models.LogsClients,{
   constraints: false,
 });
 
-db.models.Clients.belongsToMany(db.models.VehicleType,{ through: db.models.UserVehicleType,constraints: false, });
+db.models.Clients.belongsToMany(db.models.VehicleType,{ through: db.models.UserVehicleType,constraints: false, as: 'vehicleType'});
 
 db.models.LogsClients.belongsTo(db.models.Clients,{
   foreignKey: {
@@ -22,6 +22,6 @@ db.models.LogsClients.belongsTo(db.models.Clients,{
   constraints: false,
 });
 
-db.models.VehicleType.belongsToMany(db.models.Clients,{ through: db.models.UserVehicleType,constraints: false, });
+db.models.VehicleType.belongsToMany(db.models.Clients,{ through: db.models.UserVehicleType,constraints: false,as:"clients" });
 
 export { UserVehicleType,LogsClients,VehicleType ,NotesAndCoins,Clients };

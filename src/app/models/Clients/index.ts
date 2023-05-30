@@ -11,7 +11,7 @@ Clients.init(
     },
     VehicleTypeId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
+      allowNull: true,
     },
   },
   {
