@@ -2,7 +2,7 @@
 import { Request, Response } from 'express';
 import { Clients,LogsClients } from '../../../models';
 
-async function getCLients(req: Request, res: Response) {
+async function getLogs(req: Request, res: Response) {
   const { idUser } = req.query;
   // #swagger.tags = ['Tasks']
   // #swagger.description = 'Endpoint para obter dados de tasks'
@@ -13,13 +13,13 @@ async function getCLients(req: Request, res: Response) {
       } */
 
   try {
-    const result = await idUser ?  LogsClients.findAll({
+    const result = idUser ?  await LogsClients.findAll({
       where: { idUser },
-    }) : LogsClients.findAll({
+    }) : await LogsClients.findAll({
       include: [
         {
           model: Clients, // Modelo da primeira associação
-          as: 'userClients' // Alias da primeira associação definido no modelo User
+          as: 'client' // Alias da primeira associação definido no modelo
         },
       ]
     });
@@ -39,4 +39,4 @@ async function getCLients(req: Request, res: Response) {
   }
 }
 
-export default getCLients;
+export default getLogs;

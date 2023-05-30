@@ -1,9 +1,10 @@
 import { Request, Response } from 'express';
-import { LogsClients } from '../../../models';
+import { LogsClients, NotesAndCoins } from '../../../models';
 import { calculateChangeMoney } from '../../../utils/calculateChangeMoney';
-import { calculateDifferentHours } from '../../../utils/calculateDifferentHours'
+import { calculateDifferentHours } from '../../../utils/calculateDifferentHours';
+import { returnCoinsChangeYesOrNoCoins } from '../../../utils/returnCoinsChangeYesOrNoCoins';
 
-async function SetClient(req: Request, res: Response) {
+async function UpdateLogs(req: Request, res: Response) {
   const { id } = req.params;
   const {
     prohibited,
@@ -39,16 +40,47 @@ async function SetClient(req: Request, res: Response) {
         } */
 
   try {
-   const calculationChangePrice= calculateChangeMoney(price, paidOutPrice || 0);
+    const calculationChangePrice = calculateChangeMoney(price, paidOutPrice || 0);
+    let notas=[]
 
-   if(calculationChangePrice.message==='Falta dinheiro' && paidOut){
-    return res.json({
-      message: 'Pagamento insuficiente',
-    });
-   }
+    if (calculationChangePrice.message === 'Falta dinheiro' && paidOut) {
+      return res.json({
+        message: 'Pagamento insuficiente',
+      });
+    }
+    const calPrice = exit != null && exit ? priceVehicle * calculateDifferentHours(prohibited, exit) : price;
+    const calChangeValue: { changeValue: number; message: string } | null | any =
+      paidOutPrice != null && paidOutPrice ? calculateChangeMoney(calPrice, paidOutPrice || 0) : changeValue;
 
-  const calChangeValue=paidOutPrice!=null || paidOutPrice ?  calculateChangeMoney(price, paidOutPrice || 0): changeValue;
-  const calPrice= exit!=null && exit? priceVehicle * calculateDifferentHours(prohibited, exit) : price;
+      if (paidOut) {
+        const coins:any= await NotesAndCoins.findAll();
+        const coinsFormatted:any=Object.entries(coins).map(([key, value]:any) => (value?.dataValues));
+        const changePayment = await returnCoinsChangeYesOrNoCoins(coinsFormatted, calChangeValue.changeValue);
+
+        notas=changePayment.notas;
+
+        if(changePayment.message==="Não há notas suficientes para o troco."){
+          return res.json({
+            message: changePayment.message,
+            notas
+          });
+        }
+
+        await changePayment.notas.map(async (item: { amount: number; value: number }, index: number) => {
+             await NotesAndCoins.update(
+               {
+                 amount: item.amount - item.amount,
+                 value: item.value.toString(),
+               },
+               {
+                 where: {
+                   value: item.value.toString(),
+                 },
+               },
+             );
+         });
+
+      }
 
     await LogsClients.update(
       {
@@ -57,9 +89,10 @@ async function SetClient(req: Request, res: Response) {
         price: calPrice,
         paidOut,
         priceVehicle,
-        changeValue: calChangeValue,
+        changeValue: calChangeValue.changeValue != null && calChangeValue.changeValue ? calChangeValue?.changeValue : calChangeValue,
         paidOutPrice,
         idUser,
+        changeValueNotas: notas
       },
       {
         where: {
@@ -74,6 +107,7 @@ async function SetClient(req: Request, res: Response) {
         } */
     return res.json({
       message: 'Log de Cliente atualizado com sucesso',
+      messageChange: calChangeValue != null && calChangeValue ? calChangeValue?.message : calChangeValue,
       prohibited,
       exit,
       price: calPrice,
@@ -81,6 +115,7 @@ async function SetClient(req: Request, res: Response) {
       changeValue: calChangeValue,
       paidOutPrice,
       idUser,
+      changeValueNotas: notas
     });
   } catch (err) {
     /* #swagger.responses[400] = {
@@ -91,4 +126,4 @@ async function SetClient(req: Request, res: Response) {
   }
 }
 
-export default SetClient;
+export default UpdateLogs;

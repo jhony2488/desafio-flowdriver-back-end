@@ -10,6 +10,7 @@ export const up = async (queryInterface: QueryInterface) => {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     value: {
       type: DataTypes.FLOAT,

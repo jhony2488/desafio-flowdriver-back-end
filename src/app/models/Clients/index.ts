@@ -8,6 +8,7 @@ Clients.init(
     plate: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     VehicleTypeId: {
       type: DataTypes.INTEGER,

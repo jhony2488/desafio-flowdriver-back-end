@@ -10,6 +10,7 @@ export const up = async (queryInterface: QueryInterface) => {
     value: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     amount: {
       type: DataTypes.INTEGER,

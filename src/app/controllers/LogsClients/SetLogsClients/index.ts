@@ -57,23 +57,11 @@ async function SetClient(req: Request, res: Response) {
         include: [
           {
             model: Clients, // Modelo da primeira associação
-            as: 'userClients', // Alias da primeira associação definido no modelo User
+            as: 'client', // Alias da primeira associação definido no modelo
           },
         ],
       },
     );
-
-    const user:any = await Clients.findByPk(idUser);
-
-    user.addLogsClients(      {
-      prohibited,
-      exit,
-      price,
-      paidOut,
-      changeValue,
-      paidOutPrice,
-      idUser,
-    },);
 
     /* #swagger.responses[200] = {
                schema: { $ref: "#/definitions/SendMailResponse" },

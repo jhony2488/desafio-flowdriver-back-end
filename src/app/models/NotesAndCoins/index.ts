@@ -6,7 +6,11 @@ require('dotenv').config({
 });
 
 const NotesAndCoins = db.define('NotesAndCoins', {
-  value: DataTypes.STRING,
+  value: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    unique: true,
+  },
   amount: DataTypes.INTEGER,
 });
 

@@ -9,7 +9,11 @@ class VehicleType extends Model {};
 
 VehicleType.init(
   {
-    name: DataTypes.STRING,
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      unique: true,
+    },
     value: DataTypes.FLOAT,
   },
   {

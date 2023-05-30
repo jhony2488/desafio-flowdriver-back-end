@@ -29,7 +29,7 @@ async function SetNotesAndCoins(req: Request, res: Response) {
   try {
     if (amountsWithdrawn != null && amountsWithdrawn) {
       await amountsWithdrawn.map(async (item) => {
-        await NotesAndCoins.create({
+        await NotesAndCoins.upsert({
           amount: item.amount,
           value: item.value,
         });
@@ -39,7 +39,7 @@ async function SetNotesAndCoins(req: Request, res: Response) {
         amountsWithdrawn,
       });
     }
-    await NotesAndCoins.create({
+    await NotesAndCoins.upsert({
       amount,
       value,
     });

@@ -10,6 +10,7 @@ export const up = async (queryInterface: QueryInterface) => {
     plate: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
     },
     VehicleTypeId: {
       type: DataTypes.INTEGER,

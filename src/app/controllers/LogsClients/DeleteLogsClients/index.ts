@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { LogsClients } from '../../../models';
 
-async function SetClient(req: Request, res: Response) {
+async function DeleteLogs(req: Request, res: Response) {
   const { id } = req.params;
   // #swagger.tags = ['setTasks']
   // #swagger.description = 'Endpoint para criar uma nova task'
@@ -43,4 +43,4 @@ async function SetClient(req: Request, res: Response) {
   }
 }
 
-export default SetClient;
+export default DeleteLogs;
