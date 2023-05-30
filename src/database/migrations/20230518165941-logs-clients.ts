@@ -33,7 +33,6 @@ export const up = async (queryInterface: QueryInterface) => {
     idUser: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      unique: true,
       references: {
         model: 'Clients',
         key: 'id'

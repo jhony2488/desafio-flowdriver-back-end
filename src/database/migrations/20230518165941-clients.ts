@@ -13,8 +13,7 @@ export const up = async (queryInterface: QueryInterface) => {
     },
     VehicleTypeId: {
       type: DataTypes.INTEGER,
-      allowNull: false,
-      unique: true,
+      allowNull: true,
       references: {
         model: 'VehicleType',
         key: 'id'
