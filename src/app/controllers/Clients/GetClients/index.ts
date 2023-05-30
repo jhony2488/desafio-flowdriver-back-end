@@ -13,22 +13,22 @@ async function getCLients(req: Request, res: Response) {
       } */
 
   try {
-    const result = await id ? Clients.findOne({
+    const result = id ? await Clients.findOne({
       where: { id }, include: [
         {
           model: LogsClients, // Modelo da primeira associação
-          as: 'logClients' // Alias da primeira associação definido no modelo User
+          as: 'logs' // Alias da primeira associação definido no modelo User
         },
         {
           model: VehicleType, // Modelo da primeira associação
           as: 'vehicleType' // Alias da primeira associação definido no modelo User
         },
       ]
-    }) : Clients.findAll({
+    }) : await Clients.findAll({
       include: [
         {
           model: LogsClients, // Modelo da primeira associação
-          as: 'logClients' // Alias da primeira associação definido no modelo User
+          as: 'logs' // Alias da primeira associação definido no modelo User
         },
         {
           model: VehicleType, // Modelo da primeira associação

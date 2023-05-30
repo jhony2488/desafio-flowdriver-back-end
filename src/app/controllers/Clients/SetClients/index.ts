@@ -9,8 +9,8 @@ async function SetClient(req: Request, res: Response) {
     LogClients,
   }: {
     plate:string;
-    VehicleTypeId: number
-    LogClients:[]
+    VehicleTypeId: number;
+    LogClients:[];
   } = req.body;
   // #swagger.tags = ['setTasks']
   // #swagger.description = 'Endpoint para criar uma nova task'
@@ -36,11 +36,11 @@ async function SetClient(req: Request, res: Response) {
       [
         {
           model: LogsClients, // Modelo da primeira associação
-          as: 'logClients' // Alias da primeira associação definido no modelo User
+          as: 'logs' // Alias da primeira associação definido no modelo
         },
         {
           model: VehicleType, // Modelo da primeira associação
-          as: 'vehicleType' // Alias da primeira associação definido no modelo User
+          as: 'vehicleType' // Alias da primeira associação definido no modelo
         },
       ]
     });
@@ -49,10 +49,42 @@ async function SetClient(req: Request, res: Response) {
       where: { plate },
     });
 
-    const userId= user?.id;
-    const vehicleTypeId= VehicleTypeId;
 
-    await UserVehicleType.create({userId, vehicleTypeId });
+
+    const userId= user?.id;
+
+        if(LogClients.length> 0){
+     await LogClients.map(async ( {
+        prohibited,
+        exit,
+        price,
+        paidOut,
+        changeValue,
+        paidOutPrice,
+      })=>{
+        await LogsClients.create(
+          {
+            prohibited,
+            exit,
+            price,
+            paidOut,
+            changeValue,
+            paidOutPrice,
+            idUser:userId,
+          },
+          {
+            include: [
+              {
+                model: Clients, // Modelo da primeira associação
+                as: 'client', // Alias da primeira associação definido no modelo
+              },
+            ],
+          },
+        );
+      })
+    }
+
+    await UserVehicleType.create({ userId,VehicleTypeId, ClientId:userId });
 
     /* #swagger.responses[200] = {
                schema: { $ref: "#/definitions/SendMailResponse" },
