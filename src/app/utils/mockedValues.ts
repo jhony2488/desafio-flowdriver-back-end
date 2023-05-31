@@ -1,13 +1,7 @@
-import { PropsTask } from '../interfaces/tasks';
+import { PropsCoins } from '../interfaces/coins';
 
-export const mockedTasks: PropsTask[] = [
-  { id: 1, title: 'Aprender React', completed: true },
-  { id: 2, title: 'Estudar NodeJS', completed: false },
-  { id: 3, title: 'Praticar TypeScript', completed: false },
+export const mockedTasks: PropsCoins[] = [
 ];
 
-export const mockedTasksSeeders: PropsTask[] = [
-  { title: 'Aprender React',  },
-  { title: 'Estudar NodeJS',  },
-  { title: 'Praticar TypeScript', },
+export const mockedTasksSeeders: PropsCoins[] = [
 ];
