@@ -10,13 +10,13 @@ async function UpdateUserClient(req: Request, res: Response) {
     plate:string;
     VehicleTypeId: number;
   } = req.body;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
+  // #swagger.tags = ['Clients']
+  // #swagger.description = 'Endpoint para criar atualizar o cliente'
   /*    #swagger.parameters['body'] = {
                 in: 'body',
-                description: "Dado necessario para envio de email de contato",
+                description: "Dado necessario para atualizar dados de cliente",
                 required: true,
-                schema: { $ref: "#/definitions/SendMail" }
+                schema: { $ref: "#/definitions/UpdateClient" }
         } */
 
   /* #swagger.responses[401] = {
@@ -34,8 +34,8 @@ async function UpdateUserClient(req: Request, res: Response) {
       },
     });
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageUpdateClient" },
+               description: 'Resposta da atualizacao de cliente'
         } */
     return res.json({
       message: 'Client atualizado com sucesso',

@@ -5,13 +5,7 @@ import { Clients,VehicleType } from '../../../models';
 async function DeleteVehicleType(req: Request, res: Response) {
   const { id } = req.params;
   // #swagger.tags = ['Tasks']
-  // #swagger.description = 'Endpoint para deletar uma task'
-  /*    #swagger.parameters['body'] = {
-                in: 'body',
-                description: "Dado necessario para envio de email de contato",
-                required: true,
-                schema: { $ref: "#/definitions/SendMail" }
-        } */
+  // #swagger.description = 'Endpoint para deletar'
 
   /* #swagger.responses[401] = {
                schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -34,8 +28,8 @@ async function DeleteVehicleType(req: Request, res: Response) {
     });
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageDeleteVehicle" },
+               description: 'Veiculo deletado'
         } */
     return res.json({
       message: 'Veiculo deletado com sucesso',

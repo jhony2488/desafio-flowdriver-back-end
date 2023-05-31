@@ -25,13 +25,13 @@ async function UpdateLogs(req: Request, res: Response) {
     priceVehicle: number;
     paidOutPrice: number | null;
   } = req.body;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
+  // #swagger.tags = ['ClientsLogs']
+  // #swagger.description = 'Endpoint para alterar um registro'
   /*    #swagger.parameters['body'] = {
                 in: 'body',
-                description: "Dado necessario para envio de email de contato",
+                description: "Dado necessario para alterar registro",
                 required: true,
-                schema: { $ref: "#/definitions/SendMail" }
+                schema: { $ref: "#/definitions/UpdateLogs" }
         } */
 
   /* #swagger.responses[401] = {
@@ -102,8 +102,8 @@ async function UpdateLogs(req: Request, res: Response) {
     );
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageUpdateLog" },
+               description: 'Registro alterado'
         } */
     return res.json({
       message: 'Log de Cliente atualizado com sucesso',

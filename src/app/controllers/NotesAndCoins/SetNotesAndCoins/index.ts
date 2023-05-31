@@ -12,13 +12,13 @@ async function SetNotesAndCoins(req: Request, res: Response) {
     amount?: number;
     amountsWithdrawn: PropsCoins[] | null;
   } = req.body;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
+  // #swagger.tags = ['NotesAndCoins']
+  // #swagger.description = 'Endpoint para criar uma nova moeda ou nota(cedula)'
   /*    #swagger.parameters['body'] = {
                 in: 'body',
-                description: "Dado necessario para envio de email de contato",
+                description: "Dado necessario para criar moeda e nota(cedula)",
                 required: true,
-                schema: { $ref: "#/definitions/SendMail" }
+                schema: { $ref: "#/definitions/setMoney" }
         } */
 
   /* #swagger.responses[401] = {
@@ -44,8 +44,8 @@ async function SetNotesAndCoins(req: Request, res: Response) {
       value,
     });
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageSetMoney" },
+               description: 'Moeda/nota criada'
         } */
     return res.json({
       message: 'Moedas/dinheiro criada com sucesso',

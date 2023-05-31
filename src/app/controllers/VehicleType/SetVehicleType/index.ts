@@ -9,13 +9,13 @@ async function SetVehicleType(req: Request, res: Response) {
     name: string;
     value: number;
   } = req.body;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
+  // #swagger.tags = ['Vehicles']
+  // #swagger.description = 'Endpoint para criar um novo tipo de veiculo'
   /*    #swagger.parameters['body'] = {
                 in: 'body',
-                description: "Dado necessario para envio de email de contato",
+                description: "Dado necessario para criar um tipo de veiculo",
                 required: true,
-                schema: { $ref: "#/definitions/SendMail" }
+                schema: { $ref: "#/definitions/setVehicles" }
         } */
 
   /* #swagger.responses[401] = {
@@ -29,8 +29,8 @@ async function SetVehicleType(req: Request, res: Response) {
       value,
     });
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageTypeVehicle" },
+               description: 'Veiculo criado com sucesso'
         } */
     return res.json({
       message: 'Veiculo criada com sucesso',

@@ -20,13 +20,13 @@ async function SetClient(req: Request, res: Response) {
     changeValue: number | null;
     paidOutPrice: number | null;
   } = req.body;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
+  // #swagger.tags = ['ClientsLogs']
+  // #swagger.description = 'Endpoint para criar um novo registro para um usuario'
   /*    #swagger.parameters['body'] = {
                 in: 'body',
                 description: "Dado necessario para envio de email de contato",
                 required: true,
-                schema: { $ref: "#/definitions/SendMail" }
+                schema: { $ref: "#/definitions/setLogs" }
         } */
 
   /* #swagger.responses[401] = {
@@ -56,16 +56,16 @@ async function SetClient(req: Request, res: Response) {
       {
         include: [
           {
-            model: Clients, // Modelo da primeira associação
-            as: 'client', // Alias da primeira associação definido no modelo
+            model: Clients,
+            as: 'client',
           },
         ],
       },
     );
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageSetLog" },
+               description: 'Criar um novo registro'
         } */
     return res.json({
       message: 'Log de Cliente criado com sucesso',

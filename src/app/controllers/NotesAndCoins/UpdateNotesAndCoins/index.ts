@@ -10,13 +10,13 @@ async function UpdateNotesAndCoins(req: Request, res: Response) {
     value: string;
     amount: number;
   } = req.body;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
+  // #swagger.tags = ['NotesAndCoins']
+  // #swagger.description = 'Endpoint para atualizar uma nota'
   /*    #swagger.parameters['body'] = {
                 in: 'body',
-                description: "Dado necessario para envio de email de contato",
+                description: "Dado necessario para atualizar nota/moeda",
                 required: true,
-                schema: { $ref: "#/definitions/SendMail" }
+                schema: { $ref: "#/definitions/UpdateMoney" }
         } */
 
   /* #swagger.responses[401] = {
@@ -38,8 +38,8 @@ async function UpdateNotesAndCoins(req: Request, res: Response) {
       );
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageUpdateCoin" },
+               description: 'Nota atualizada'
         } */
     return res.json({
       message: 'Nota/Moeda atualizadas com sucesso',

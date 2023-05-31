@@ -3,8 +3,8 @@ import { Clients,VehicleType } from '../../../models';
 
 async function GetVehicleType(req: Request, res: Response) {
   const { id, clients } = req.query;
-  // #swagger.tags = ['Tasks']
-  // #swagger.description = 'Endpoint para obter dados de tasks'
+  // #swagger.tags = ['Vehicles']
+  // #swagger.description = 'Endpoint para obter dados de tipos de veiculos'
 
   /* #swagger.responses[401] = {
              schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -27,15 +27,15 @@ async function GetVehicleType(req: Request, res: Response) {
           include: clients
             ? [
                 {
-                  model: Clients, // Modelo da primeira associação
+                  model: Clients,
                   as:"clients"
                 },
               ]
             : undefined,
         });
     /* #swagger.responses[200] = {
-             schema: { $ref: "#/definitions/SendMailResponse" },
-             description: 'Obtido as tasks'
+             schema: { $ref: "#/definitions/GetVehicles" },
+             description: 'Obtido os tipos de veiculos'
       } */
     return res.json({
       result,

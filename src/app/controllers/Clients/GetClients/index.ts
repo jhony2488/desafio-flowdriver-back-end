@@ -4,8 +4,8 @@ import {Clients,LogsClients, VehicleType} from '../../../models';
 
 async function getCLients(req: Request, res: Response) {
   const { id } = req.query;
-  // #swagger.tags = ['Tasks']
-  // #swagger.description = 'Endpoint para obter dados de tasks'
+  // #swagger.tags = ['Clients']
+  // #swagger.description = 'Endpoint para obter dados de  clientes'
 
   /* #swagger.responses[401] = {
              schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -17,11 +17,11 @@ async function getCLients(req: Request, res: Response) {
       where: { id }, include: [
         {
           model: LogsClients, // Modelo da primeira associação
-          as: 'logs' // Alias da primeira associação definido no modelo User
+          as: 'logs' // Alias da primeira associação definido no modelo
         },
         {
           model: VehicleType, // Modelo da primeira associação
-          as: 'vehicleType' // Alias da primeira associação definido no modelo User
+          as: 'vehicleType' // Alias da primeira associação definido no modelo
         },
       ]
     }) : await Clients.findAll({
@@ -32,13 +32,13 @@ async function getCLients(req: Request, res: Response) {
         },
         {
           model: VehicleType, // Modelo da primeira associação
-          as: 'vehicleType' // Alias da primeira associação definido no modelo User
+          as: 'vehicleType' // Alias da primeira associação definido no modelo
         },
       ]
     });
     /* #swagger.responses[200] = {
              schema: { $ref: "#/definitions/SendMailResponse" },
-             description: 'Obtido as tasks'
+             description: 'Obtido os usuarios'
       } */
     return res.json({
       result

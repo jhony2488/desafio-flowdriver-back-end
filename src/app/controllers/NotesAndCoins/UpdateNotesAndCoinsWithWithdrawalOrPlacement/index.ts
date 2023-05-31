@@ -8,13 +8,13 @@ async function UpdateNotesAndCoinsWithWithdrawalOrPlacement(req: Request, res: R
   }: {
     amountsWithdrawn: PropsCoins[];
   } = req.body;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
+  // #swagger.tags = ['NotesAndCoins']
+  // #swagger.description = 'Endpoint para atualizar varias moedas/notas'
   /*    #swagger.parameters['body'] = {
                 in: 'body',
-                description: "Dado necessario para envio de email de contato",
+                description: "Dado necessario para atualizar varias moedas/notas",
                 required: true,
-                schema: { $ref: "#/definitions/SendMail" }
+                schema: { $ref: "#/definitions/UpdateCoins" }
         } */
 
   /* #swagger.responses[401] = {
@@ -53,8 +53,8 @@ async function UpdateNotesAndCoinsWithWithdrawalOrPlacement(req: Request, res: R
     });
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageUpdateCoins" },
+               description: 'Notas atualizadas com sucesso'
         } */
     return res.json({
       message: 'Notas atualizadas com sucesso',

@@ -3,8 +3,8 @@ import { UserVehicleType} from '../../../models';
 
 async function GetUserVehicleType(req: Request, res: Response) {
   const { id } = req.query;
-  // #swagger.tags = ['Tasks']
-  // #swagger.description = 'Endpoint para obter dados de tasks'
+  // #swagger.tags = ['UserVehiclesTypes']
+  // #swagger.description = 'Endpoint para obter dados de tipos de veiculos'
 
   /* #swagger.responses[401] = {
              schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -17,8 +17,8 @@ async function GetUserVehicleType(req: Request, res: Response) {
         })
       : await UserVehicleType.findAll();
     /* #swagger.responses[200] = {
-             schema: { $ref: "#/definitions/SendMailResponse" },
-             description: 'Obtido as tasks'
+             schema: { $ref: "#/definitions/GetUserVehiclesType" },
+             description: 'Obtido os dados'
       } */
     return res.json({
       result,

@@ -3,14 +3,8 @@ import { NotesAndCoins } from '../../../models';
 
 async function SetClient(req: Request, res: Response) {
   const { id } = req.params;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
-  /*    #swagger.parameters['body'] = {
-                in: 'body',
-                description: "Dado necessario para envio de email de contato",
-                required: true,
-                schema: { $ref: "#/definitions/SendMail" }
-        } */
+  // #swagger.tags = ['NotesAndCoins']
+  // #swagger.description = 'Endpoint para criar uma moeda/nota'
 
   /* #swagger.responses[401] = {
                schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -28,8 +22,8 @@ async function SetClient(req: Request, res: Response) {
     );
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageDeleteCoins" },
+               description: 'Deleteado dinheiro'
         } */
     return res.json({
       message: 'Moeda deletado com sucesso',

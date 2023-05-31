@@ -12,13 +12,13 @@ async function SetClient(req: Request, res: Response) {
     VehicleTypeId: number;
     LogClients:[];
   } = req.body;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
+  // #swagger.tags = ['Clients']
+  // #swagger.description = 'Endpoint para criar um novo usuario'
   /*    #swagger.parameters['body'] = {
                 in: 'body',
-                description: "Dado necessario para envio de email de contato",
+                description: "Dado necessario para criar cliente",
                 required: true,
-                schema: { $ref: "#/definitions/SendMail" }
+                schema: { $ref: "#/definitions/SetClient" }
         } */
 
   /* #swagger.responses[401] = {
@@ -87,8 +87,8 @@ async function SetClient(req: Request, res: Response) {
     await UserVehicleType.create({ userId,VehicleTypeId, ClientId:userId });
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageSetClient" },
+               description: 'Cliente criado'
         } */
     return res.json({
       message: 'Client criado com sucesso',

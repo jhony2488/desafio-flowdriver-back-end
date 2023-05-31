@@ -4,8 +4,8 @@ import { Clients,LogsClients } from '../../../models';
 
 async function getLogs(req: Request, res: Response) {
   const { idUser } = req.query;
-  // #swagger.tags = ['Tasks']
-  // #swagger.description = 'Endpoint para obter dados de tasks'
+  // #swagger.tags = ['ClientsLogs']
+  // #swagger.description = 'Endpoint para obter registros de usuarios'
 
   /* #swagger.responses[401] = {
              schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -18,14 +18,14 @@ async function getLogs(req: Request, res: Response) {
     }) : await LogsClients.findAll({
       include: [
         {
-          model: Clients, // Modelo da primeira associação
-          as: 'client' // Alias da primeira associação definido no modelo
+          model: Clients,
+          as: 'client'
         },
       ]
     });
     /* #swagger.responses[200] = {
-             schema: { $ref: "#/definitions/SendMailResponse" },
-             description: 'Obtido as tasks'
+             schema: { $ref: "#/definitions/GetLogs" },
+             description: 'Obtido os logs'
       } */
     return res.json({
       result

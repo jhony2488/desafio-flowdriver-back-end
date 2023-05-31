@@ -4,14 +4,8 @@ import {Clients,LogsClients} from '../../../models';
 
 async function DeleteClients(req: Request, res: Response) {
   const { id } = req.params;
-  // #swagger.tags = ['Tasks']
-  // #swagger.description = 'Endpoint para deletar uma task'
-  /*    #swagger.parameters['body'] = {
-                in: 'body',
-                description: "Dado necessario para envio de email de contato",
-                required: true,
-                schema: { $ref: "#/definitions/SendMail" }
-        } */
+  // #swagger.tags = ['Clients']
+  // #swagger.description = 'Endpoint para deletar um cliente'
 
   /* #swagger.responses[401] = {
                schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -28,8 +22,8 @@ async function DeleteClients(req: Request, res: Response) {
     await LogsClients.destroy({ where: { idUser: id } });
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/MessageDeleteClient" },
+               description: 'Cliente deletado'
         } */
     return res.json({
       message: 'Cliente deletado com sucesso',

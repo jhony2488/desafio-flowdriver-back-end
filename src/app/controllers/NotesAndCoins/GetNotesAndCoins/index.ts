@@ -4,8 +4,8 @@ import { NotesAndCoins } from '../../../models';
 
 async function GetNotesAndCoins(req: Request, res: Response) {
   const { id } = req.query;
-  // #swagger.tags = ['Tasks']
-  // #swagger.description = 'Endpoint para obter dados de tasks'
+  // #swagger.tags = ['NotesAndCoins']
+  // #swagger.description = 'Endpoint para obter dados de notas e moedas'
 
   /* #swagger.responses[401] = {
              schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -17,8 +17,8 @@ async function GetNotesAndCoins(req: Request, res: Response) {
       where: { id }
     }) : await NotesAndCoins.findAll();
     /* #swagger.responses[200] = {
-             schema: { $ref: "#/definitions/SendMailResponse" },
-             description: 'Obtido as tasks'
+             schema: { $ref: "#/definitions/GetMoney" },
+             description: 'Obtido os dados'
       } */
     return res.json({
       result

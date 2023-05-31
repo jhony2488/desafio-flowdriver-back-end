@@ -3,14 +3,8 @@ import { LogsClients } from '../../../models';
 
 async function DeleteLogs(req: Request, res: Response) {
   const { id } = req.params;
-  // #swagger.tags = ['setTasks']
-  // #swagger.description = 'Endpoint para criar uma nova task'
-  /*    #swagger.parameters['body'] = {
-                in: 'body',
-                description: "Dado necessario para envio de email de contato",
-                required: true,
-                schema: { $ref: "#/definitions/SendMail" }
-        } */
+  // #swagger.tags = ['ClientsLogs']
+  // #swagger.description = 'Endpoint para criar um log'
 
   /* #swagger.responses[401] = {
                schema: { $ref: "#/definitions/ErrorTokenInvalid" },
@@ -28,8 +22,8 @@ async function DeleteLogs(req: Request, res: Response) {
     );
 
     /* #swagger.responses[200] = {
-               schema: { $ref: "#/definitions/SendMailResponse" },
-               description: 'Enviar email'
+               schema: { $ref: "#/definitions/ DeleteLogMessage" },
+               description: 'Log de Cliente deletado com sucesso'
         } */
     return res.json({
       message: 'Log de Cliente deletado com sucesso',
