@@ -60,14 +60,69 @@
     },
     "/clients": {
       "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "description": "Endpoint para obter dados de clientes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pegar dados de clientes",
+            "schema": {
+              "$ref": "#/definitions/GetClients"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       },
       "post": {
         "description": "",
-        "parameters": [],
-        "responses": {}
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dado necessario para criar um cliente",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/SetClient"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Novo cliente criado ",
+            "schema": {
+              "$ref": "#/definitions/MessageSetClient"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       }
     },
     "/clients/{id}": {
