@@ -51,7 +51,7 @@
 <h3>Pré-requisitos</h3>
 
 Antes de começar, você vai precisar ter instalado em sua máquina as seguintes ferramentas:
-[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [MySQL](https://www.mysql.com/),[Docker](https://hub.docker.com/).
+[Git](https://git-scm.com), [Node.js](https://nodejs.org/en/), [PostgreSQL](https://www.postgresql.org/docs/),[Docker](https://hub.docker.com/).
 Além disto é bom ter um editor para trabalhar com o código como [VSCode](https://code.visualstudio.com/)
 
 <h3 id="instalacao">Instalação</h3>
@@ -82,22 +82,46 @@ $  docker compose up --build
 # O servidor inciará na porta:80 - acesse <http://localhost:80>
 ```
 
-<h3 id="rodando-api">🎲 Rodando a API sem docker</h3>
+<h3 id="rodando-api">🎲 Rodando a API sem docker no Windows</h3>
 
 #### Instale o Node.js atravez do link abaixo caso ainda não o tenha instalado
 
 - [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
-#### Instale o MSQL atravez do link abaixo caso ainda não o tenha instalado
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
 
-- [https://www.mysql.com/downloads/](https://www.mysql.com/downloads/)
+- [https://www.postgresql.org/](https://www.postgresql.org/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/)
 
 ```bash
-# Execute o mysql no seu terminal/CMD
-$  mysql -h localhost -u root -p
+# Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
+$ sequelize db:migrate
 
-# Crie um banco de dados chamado appDB no MySQL
-$ CREATE DATABASE appDB;
+# Execute a aplicação
+$ npm run start || yarn start
+
+# O servidor inciará na porta:80 - acesse <http://localhost:80>
+```
+
+
+<h3 id="rodando-api">🎲 Rodando a API sem docker no Mac</h3>
+
+#### Instale o Node.js atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://www.postgresql.org/](https://www.postgresql.org/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/)
+
+```bash
 
 # Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
 $ sequelize db:migrate
@@ -108,32 +132,29 @@ $ npm run start || yarn start
 # O servidor inciará na porta:80 - acesse <http://localhost:80>
 ```
 
-<h2 id="tests">🛠 Testes sem docker</h2>
+<h3 id="rodando-api">🎲 Rodando a API sem docker no Linux</h3>
 
-### Instale o Node.js atravez do link abaixo caso ainda não o tenha instalado
+#### Instale o Node.js atravez do link abaixo caso ainda não o tenha instalado
 
 - [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
 
-### Instale o MySQL atravez do link abaixo caso ainda não o tenha instalado
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
 
-- [https://www.mysql.com/downloads/](https://www.mysql.com/downloads/)
+- [https://www.postgresql.org/](https://www.postgresql.org/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/)
 
 ```bash
-# Execute o mysql no seu terminal/CMD
-$  mysql -h localhost -u root -p
-
-# Crie um banco de dados chamado appDB  no MySQL
-$ CREATE DATABASE appDB;
 
 # Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
 $ sequelize db:migrate
 
-# Executar os testes
-$ npm run test || yarn test
+# Execute a aplicação
+$ npm run start || yarn start
 
-# Executar testes de estresse na API
-$ npm run test-stress || yarn test-stress
-
+# O servidor inciará na porta:80 - acesse <http://localhost:80>
 ```
 
 <h2 id="tests">🛠 Testes com docker</h2>
@@ -158,13 +179,152 @@ $ npm run test-stress || yarn test-stress
 
 ```
 
+<h2 id="tests">🛠 Testes sem docker no Windows</h2>
+
+### Instale o Node.js atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/)
+
+```bash
+# Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
+$ sequelize db:migrate
+
+# Executar os testes
+$ npm run test || yarn test
+
+# Executar testes de estresse na API
+$ npm run test-stress || yarn test-stress
+
+```
+
+<h2 id="tests">🛠 Testes sem docker no Mac</h2>
+
+### Instale o Node.js atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/)
+
+```bash
+# Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
+$ sequelize db:migrate
+
+# Executar os testes
+$ npm run test || yarn test
+
+# Executar testes de estresse na API
+$ npm run test-stress || yarn test-stress
+
+```
+
+<h2 id="tests">🛠 Testes sem docker no Linux</h2>
+
+### Instale o Node.js atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://nodejs.org/en/download/](https://nodejs.org/en/download/)
+
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/)
+
+```bash
+# Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
+$ sequelize db:migrate
+
+# Executar os testes
+$ npm run test || yarn test
+
+# Executar testes de estresse na API
+$ npm run test-stress || yarn test-stress
+
+```
+
 <h2 id="app-demo">  
-  Documentação da aplicação
+  Documentação da aplicação com docker
 </h2>
 
 ```bash
 # Execute o docker compose no seu terminal/CMD
 $  docker compose up --build
+
+# O servidor inciará na porta:80 - acesse a documentação <http://localhost:80/documentation/>
+```
+
+<h2 id="app-demo">  
+  Documentação da aplicação sem docker com Linux
+</h2>
+
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-linux/)
+
+```bash
+# Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
+$ sequelize db:migrate
+#  Executar o build da documentação
+$ npm run documentation || yarn documentation
+
+# O servidor inciará na porta:80 - acesse a documentação <http://localhost:80/documentation/>
+```
+
+<h2 id="app-demo">  
+  Documentação da aplicação sem docker com Windows
+</h2>
+
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql/)
+
+```bash
+# Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
+$ sequelize db:migrate
+#  Executar o build da documentação
+$ npm run documentation || yarn documentation
+
+# O servidor inciará na porta:80 - acesse a documentação <http://localhost:80/documentation/>
+```
+
+<h2 id="app-demo">  
+  Documentação da aplicação sem docker com Mac
+</h2>
+
+#### Instale o POSTGRESQL atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://www.postgresql.org/docs/](https://www.postgresql.org/docs/)
+
+#### configure a o banco de dados e crie o banco de dados com o nome de appDB
+
+- [https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/](https://www.postgresqltutorial.com/postgresql-getting-started/install-postgresql-macos/)
+
+```bash
+# Agora no seu CMD rode as migrations para criar as tabelas no banco de dados
+$ sequelize db:migrate
 #  Executar o build da documentação
 $ npm run documentation || yarn documentation
 
@@ -174,6 +334,19 @@ $ npm run documentation || yarn documentation
 ### Acesse a documentação da localmente
 
 - [http://localhost:80/documentation/](http://localhost:80/documentation/)
+
+<h2 id="app-demo">  
+  Testar a API com Insomnia
+</h2>
+
+#### Instale o Insomnia atravez do link abaixo caso ainda não o tenha instalado
+
+- [https://insomnia.rest/download](https://insomnia.rest/download)
+
+#### Documentação do insomnia
+
+- [https://docs.insomnia.rest/](https://docs.insomnia.rest/)
+
 
 <h2 id="tecnologias">🛠 Tecnologias</h2>
 
@@ -188,5 +361,5 @@ As seguintes ferramentas foram usadas na construção do projeto:
 - [JWT](https://jwt.io/)
 - [Eslint](https://eslint.org/)
 - [Prettier](https://prettier.io/)
-- [MySQL](https://www.mysql.com/)
+- [PostgreSQL](https://www.postgresql.org/docs/)
 

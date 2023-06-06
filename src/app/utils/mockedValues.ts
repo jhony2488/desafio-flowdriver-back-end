@@ -1,7 +1,7 @@
 import { PropsCoins } from '../interfaces/coins';
 
-export const mockedTasks: PropsCoins[] = [
+export const mocked: PropsCoins[] = [
 ];
 
-export const mockedTasksSeeders: PropsCoins[] = [
+export const mockedSeeders: PropsCoins[] = [
 ];

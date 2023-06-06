@@ -292,7 +292,7 @@ const doc = {
     UpdateAmountCoin: {
       amount: 6,
     },
-    MessageDeleteCoins: {
+    MessageDeleteCoin: {
       message: 'Moeda deletado com sucesso',
     },
     MessageUpdateAmountCoins: {

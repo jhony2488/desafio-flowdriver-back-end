@@ -53,13 +53,38 @@
   "paths": {
     "/": {
       "get": {
-        "description": "",
+        "tags": [
+          "Default"
+        ],
+        "description": "Endpoint default para obter dados versão da API",
         "parameters": [],
-        "responses": {}
+        "responses": {
+          "200": {
+            "description": "Pegar dados da versão da API",
+            "schema": {
+              "$ref": "#/definitions/DefaultIndex"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       }
     },
     "/clients": {
       "get": {
+        "tags": [
+          "Clients"
+        ],
         "description": "Endpoint para obter dados de clientes",
         "parameters": [
           {
@@ -91,7 +116,10 @@
         }
       },
       "post": {
-        "description": "",
+        "tags": [
+          "Clients"
+        ],
+        "description": "Endpoint para criar cliente",
         "parameters": [
           {
             "name": "body",
@@ -127,9 +155,41 @@
     },
     "/clients/{id}": {
       "put": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "Clients"
+        ],
+        "description": "Endpoint para atualizar cliente",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dado necessario para atualizar um cliente",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateClient"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Cliente atualizado ",
+            "schema": {
+              "$ref": "#/definitions/MessageUpdateClient"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       },
       "delete": {
         "tags": [
@@ -345,7 +405,7 @@
           "200": {
             "description": "Atualizado quantidade de moeda",
             "schema": {
-              "$ref": "#/definitions/ MessageUpdateAmountCoins"
+              "$ref": "#/definitions/MessageUpdateAmountCoins"
             }
           },
           "400": {
@@ -363,33 +423,190 @@
         }
       },
       "delete": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "NotesAndCoins"
+        ],
+        "description": "Endpoint para deletar uma moeda/nota",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Moeda/Nota Deletada",
+            "schema": {
+              "$ref": "#/definitions/MessageDeleteCoin"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       }
     },
     "/logsClients": {
       "get": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "ClientsLogs"
+        ],
+        "description": "Endpoint para pegar dados de clientes",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "query",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Pegar dados de logs clientes",
+            "schema": {
+              "$ref": "#/definitions/GetLogs"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       },
       "post": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "ClientsLogs"
+        ],
+        "description": "Endpoint para criar log de cliente",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dado necessario para criar novo log de cliente",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/setLogs"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Criar log de cliente",
+            "schema": {
+              "$ref": "#/definitions/MessageSetLog"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       }
     },
     "/logsClients/{id}": {
       "put": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "ClientsLogs"
+        ],
+        "description": "Endpoint para atualizar log de cliente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dado necessario para atualizar log de cliente",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/UpdateLogs"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Atualizar log de cliente",
+            "schema": {
+              "$ref": "#/definitions/MessageUpdateLog"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       },
       "delete": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "ClientsLogs"
+        ],
+        "description": "Endpoint para deletar log de cliente",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Deletar log de cliente",
+            "schema": {
+              "$ref": "#/definitions/DeleteLogMessage"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       }
     },
     "/vehicleType": {
@@ -471,15 +688,53 @@
     },
     "/vehicleType/{id}": {
       "put": {
-        "description": "",
-        "parameters": [],
-        "responses": {}
+        "tags": [
+          "Vehicles"
+        ],
+        "description": "Endpoint para atualizar um tipo de veiculo",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "Dado necessario para criar um tipo de veiculo",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/setVehicles"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Veiculo criado com sucesso",
+            "schema": {
+              "$ref": "#/definitions/MessageUpdateVehicle"
+            }
+          },
+          "400": {
+            "description": "Quando houver um erro na requisição",
+            "schema": {
+              "$ref": "#/definitions/Error400"
+            }
+          },
+          "401": {
+            "schema": {
+              "$ref": "#/definitions/ErrorTokenInvalid"
+            },
+            "description": "Quando o token de authenticação não for valido ou quando o token de authenticação não for encontrado"
+          }
+        }
       },
       "delete": {
         "tags": [
-          "Tasks"
+          "Vehicles"
         ],
-        "description": "Endpoint para deletar",
+        "description": "Endpoint para deletar um tipo de veiculo",
         "parameters": [
           {
             "name": "id",
@@ -515,7 +770,7 @@
         "tags": [
           "UserVehiclesTypes"
         ],
-        "description": "Endpoint para obter dados de tipos de veiculos",
+        "description": "Endpoint para obter dados de tipos de veiculos relacionados a clientes",
         "parameters": [
           {
             "name": "id",
